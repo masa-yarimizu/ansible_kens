@@ -1,0 +1,31 @@
+---
+
+# files: roles/common/tasks/main.yml
+
+- name: be sure motd is configured
+  template: src=motd dest=/etc/motd
+
+- name: be sure yum is up-to-date
+  yum: name=* state=latest
+
+- name: be sure main module installed
+  yum: name={{ item }} state=present
+  with_items:
+    - git
+    - gcc
+    - zlib-devel
+    - openssl-devel
+    - sqlite
+    - sqlite-devel
+    - libyaml-devel
+    - mysql-devel
+    - readline-devel
+    - libffi-devel
+    - httpd
+    - httpd-devel
+    - tomcat
+    - mariadb-server
+    - mariadb-devel
+
+- name: stop firewalld
+  service: name=firewalld state=stopped

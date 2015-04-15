@@ -1,0 +1,17 @@
+---
+
+# file: roles/mariadb/tasks/main.yml
+
+- name: setting config file
+  template: src=mariadb_config.j2 dest=/etc/my.cnf
+
+#- name: set root password
+#  mysql_usr: user=root password="{{ mysql_root_password }}" host=localhost
+#
+#- name: delete anonymous MySQL server user for localhost
+#  mysql_user: user="" state="absent"
+#
+#- name: delete anonymous MySQL server user
+#
+#- name: remove the MySQL test database
+#  mysql_db: db=test state=absent

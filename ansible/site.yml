@@ -1,0 +1,12 @@
+---
+# file: local_servers.yml
+
+- hosts: all 
+  remote_user: root 
+  sudo: yes
+  roles:
+    - common
+    - gitbucket
+    - jenkins
+    - ruby
+    - operation

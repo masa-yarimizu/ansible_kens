@@ -1,0 +1,7 @@
+---
+
+# file: group_vars/local
+
+ansible_ssh_port: 2222
+ansible_ssh_private_key_file: /Users/a13950/VirtualBox/vagrant_centos7_test/.vagrant/machines/default/virtualbox/private_key
+ansible_ssh_user: vagrant

@@ -1,0 +1,9 @@
+---
+
+# file: roles/redmine/tasks/main.yml
+
+- name: disable SELinux
+  template: src=selinux.j2 dest=/etc/sysconfig/selinux
+
+- name create db for redmine
+  mysql_db: name=db_redmine state=present encoding=utf8

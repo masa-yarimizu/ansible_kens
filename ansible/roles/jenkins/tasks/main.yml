@@ -1,0 +1,13 @@
+---
+
+# file: roles/jenkins/tasks/main.yml
+
+#- name: download jenkins war file
+#  get_url: url=http://mirrors.jenkins-ci.org/war/latest/jenkins.war dest=/var/lib/tomcat/webapps/
+#  sudo: yes
+
+- name: download jenkins war file with shell
+  shell: wget "http://mirrors.jenkins-ci.org/war/latest/jenkins.war" chdir=/var/lib/tomcat/webapps/ creates=/var/lib/tomcat/webapps/jenkins.war
+
+- name: set apache conf
+  template: src=jenkins.j2 dest=/etc/httpd/conf.d/jenkins.conf

@@ -1,0 +1,43 @@
+---
+
+# file: roles/ruby/tasks/main.yml
+
+- name: download ruby package
+  get_url: url=http://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.2.tar.gz dest=/usr/local/src/
+
+- name: tar ruby package
+  unarchive: src=/usr/local/src/ruby-2.2.2.tar.gz dest=/usr/local/src/ creates=/usr/local/src/ruby-2.2.2 copy=no
+
+- name: exec configure file
+  command: ./configure chdir=/usr/local/src/ruby-2.2.2/ creates=/usr/local/bin/ruby
+
+- name: make 
+  command: make chdir=/usr/local/src/ruby-2.2.2/ creates=/usr/local/bin/ruby
+
+- name: make install
+  command: make install chdir=/usr/local/src/ruby-2.2.2/ creates=/usr/local/bin/ruby
+
+- name: install bundler
+  shell: gem install bundler state=present executable=/usr/local/bin/gem
+
+#- name: git clone rbenv repository
+#  git: repo=https://github.com/sstephenson/rbenv.git dest=.rbenv
+ 
+#- name: set rbenv path
+#  lineinfile: dest=.bash_profile line='export PATH="$HOME/.rbenv/bin:$PATH"'
+
+#- name: set rbenv path
+#  lineinfile: dest=.bash_profile line='eval "$(rbenv init -)"'
+#  tags:
+
+#- name: clonse rbrnv plugin repository
+#  git: repo=https://github.com/sstephenson/ruby-build.git dest=.rbenv/plugins/ruby-build
+#  tags:
+
+#- name: ruby install with rbenv
+#  shell: /bin/bash -lc "rbenv install -v 2.1.5"
+#  tags:
+
+#- name: rbenv rehash
+#  shell: /bin/bash -lc "rbenv rehash" executable=.rbenv/bin/rbenv
+#  tags:

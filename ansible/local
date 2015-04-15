@@ -1,0 +1,9 @@
+---
+
+# file: local
+
+[local_servers]
+127.0.0.1
+
+[local:children]
+local_servers

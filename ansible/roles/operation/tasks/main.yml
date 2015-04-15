@@ -1,0 +1,22 @@
+---
+# file: roles/operation/tasks/main.yml
+
+- name: start tomcat
+  service: name=tomcat state=started enabled=yes
+  tags:
+    - ope
+
+- name: reload tomcat
+  service: name=tomcat state=restarted
+  tags:
+    - ope
+
+- name: start httpd
+  service: name=httpd state=started enabled=yes
+  tags:
+    - ope
+
+- name: reload httpd
+  service: name=httpd state=reloaded
+  tags:
+    - ope
